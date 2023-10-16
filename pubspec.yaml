@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^4.0.4
+  flutter_keyboard_visibility: ^5.4.1
+  flutter_svg: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +65,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/svg/
 
   #   - images/a_dot_ham.jpeg
 

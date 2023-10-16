@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-      home:  const HomeScreen(title: 'Flutter Demo Home Page'),
+      home:  const HomeScreen(title: "MY First app"),
     );
   }
 }

@@ -1,8 +1,11 @@
+import 'package:first_app/entity/post_horizontal_entity.dart';
+import 'package:first_app/widgets/super_mega_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../widgets/button_widget.dart';
-import 'my_second_screen.dart';
+import '../utils/assets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -14,166 +17,127 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final List<PostHorizontalEntity> horizontalPostList = [
+    PostHorizontalEntity(
+      name: "Ridhwan Nordin",
+      username: "@ridzjcob",
+      avatar: Assets.tFirstAvatar,
+      image: Assets.tFistPostImage,
+    ),
+    PostHorizontalEntity(
+      name: "Ridhwan Nordin",
+      username: "@ridzjcob",
+      avatar: Assets.tFirstAvatar,
+      image: Assets.tCarImage,
+    ),
+    PostHorizontalEntity(
+      name: "Ridhwan Nordin",
+      username: "@ridzjcob",
+      avatar: Assets.tFirstAvatar,
+      image: Assets.tGraffity,
+    ),
+    PostHorizontalEntity(
+      name: "Ridhwan Nordin",
+      username: "@ridzjcob",
+      avatar: Assets.tFirstAvatar,
+      image: Assets.tFistPostImage,
+    ),
+    PostHorizontalEntity(
+      name: "Ridhwan Nordin",
+      username: "@ridzjcob",
+      avatar: Assets.tFirstAvatar,
+      image: Assets.tFistPostImage,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(),
+    return KeyboardDismissOnTap(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            widget.title,
+            style: const TextStyle(),
+          ),
         ),
-        actions: [
-          Icon(Icons.add),
-          Icon(Icons.add),
-          Icon(Icons.add),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Text(
-            //   "Welcome",
-            //   style: GoogleFonts.nunito(
-            //     color: const Color(0xff3C3B3B),
-            //     fontSize: 48,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            //
-            // Text("Counter $_counter"),
-            // Container(
-            //   height: 195,
-            //   width: 274,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(21),
-            //     color: Colors.red,
-            //   ),
-            //   clipBehavior: Clip.hardEdge,
-            //   child: Image.asset(
-            //     'assets/images/image.jpg',
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            // const SizedBox(height: 10),
-            // // Image.asset('assets/images/image.jpg'),
-            // //
-            // const SizedBox(height: 20),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 500,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    final PostHorizontalEntity post = horizontalPostList[index];
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                // GestureDetector(
-                //   onTap: () {
-                //
-                //   },
-                //   child: Container(
-                //     height: 80,
-                //     width: 113,
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(7),
-                //       color: Colors.red,
-                //     ),
-                //   ),
-                // ),
-                // GestureDetector(
-                //   onTap: () {
-                //
-                //   },
-                //   child: Container(
-                //     height: 80,
-                //     width: 113,
-                //     decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(7),
-                //       color: Colors.red,
-                //     ),
-                //   ),
-                // ),
-
-                ButtonWidget(onTap: () {
-print("button first ");
-                },title: 'First',),
-
-                ButtonWidget(onTap: () {
-                  print("button second ");
-                  print("button second ");
-                  print("button second ");
-                  print("button second ");
-                  print("button second ");
-                  print("button second ");
-                  print("button second ");
-                  print("button second ");
-                  print("button second ");
-
-                }, title: 'Second',),
-              ],
-            ),
-          ],
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: SuperMegaCardWidget(
+                        post: post,
+                      ),
+                    );
+                  },
+                  itemCount: horizontalPostList.length,
+                ),
+              ),
+            ],
+          ),
+        ),
+        bottomNavigationBar: Container(
+          height: 100,
+          color: Colors.brown,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Container(
+                height: 30,
+                width: 30,
+                color: Colors.red,
+              ),
+              Container(
+                height: 30,
+                width: 30,
+                color: Colors.red,
+              ),
+              Container(
+                height: 40,
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xffFF00D6),
+                      Color(0xffFF4D00),
+                    ],
+                  ),
+                  color: Colors.green,
+                ),
+                child: Center(
+                    child: SvgPicture.asset(
+                  Assets.tBackArrowSvg,
+                  color: Colors.white,
+                )),
+              ),
+              Container(
+                height: 30,
+                width: 30,
+                color: Colors.red,
+              ),
+              Container(
+                height: 30,
+                width: 30,
+                color: Colors.red,
+              ),
+            ],
+          ),
         ),
       ),
-//       floatingActionButton: Column(
-//         mainAxisAlignment: MainAxisAlignment.end,
-//         children: [
-//           GestureDetector(
-//             onTap: () {
-//               print("Hello world!!");
-//              _incrementCounter()
-// ;            },
-//             child: Container(
-//               height: 57,
-//               width: 57,
-//               decoration: BoxDecoration(
-//                 color: Colors.red,
-//                 borderRadius: BorderRadius.circular(10),
-//               ),
-//               child: const Center(
-//                 child: Icon(
-//                   Icons.add,
-//                   color: Colors.white,
-//                 ),
-//               ),
-//             ),
-//           ),
-//           const SizedBox(height: 10),
-//           GestureDetector(
-//             onTap: () {
-//               print("Hello world!!");
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(
-//                   builder: (_) =>   MySecondScreen(abc: _counter,),
-//                 ),
-//               );
-//               // Navigator.pop(context);
-//             },
-//
-//
-//             child: Container(
-//               height: 57,
-//               width: 57,
-//               decoration: BoxDecoration(
-//                 color: const Color(0xff6CDFC3),
-//                 borderRadius: BorderRadius.circular(10),
-//               ),
-//               child: const Center(
-//                 child: Icon(
-//                   Icons.reply,
-//                   color: Colors.white,
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
     );
   }
 }
-
