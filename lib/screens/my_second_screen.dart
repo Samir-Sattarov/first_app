@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../main.dart';
 
 class MySecondScreen extends StatefulWidget {
+  static route({required int counter}) => MaterialPageRoute(builder: (context) => MySecondScreen(abc: counter));
+
   final int abc;
   const MySecondScreen({
     super.key,
@@ -16,6 +18,21 @@ class MySecondScreen extends StatefulWidget {
 }
 
 class _MySecondScreenState extends State<MySecondScreen> {
+
+  late GlobalKey<FormState> formKey ;
+
+  @override
+  void initState() {
+    print("Init my second screen");
+    formKey = GlobalKey<FormState>();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    print("dispose my second screen");
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
